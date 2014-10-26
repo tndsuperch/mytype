@@ -7,4 +7,6 @@ public class MyTypeException extends RuntimeException {
      */
     private static final long serialVersionUID = 6284465249389077859L;
 
+
+
 }
