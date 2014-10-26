@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+
+    <title>user list</title>
+</head>
+<body>
+
+<div>
+   <table>
+       <thead>
+       <tr>
+           <th>ID</th>
+           <th>NAME</th>
+           <th>AGE</th>
+           <th>BIRTH</th>
+       </tr>
+       </thead>
+       <tbody>
+       <tr th:each="item, status: ${users}">
+           <td th:text="${item.id}">01</td>
+           <td th:text="${item.name}">name01</td>
+           <td th:text="${item.age}">13</td>
+           <td th:text="${item.birth}">1991/06/09</td>
+       </tr>
+       </tbody>
+   </table>
+</div>
+</body>
+</html>
