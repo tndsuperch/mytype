@@ -4,7 +4,7 @@ import cn.mytype.validator.constraints.MTNotEmpty;
 
 public class User {
 
-    @MTNotEmpty(message="{msg001}")
+    @MTNotEmpty(name="ID")
     private String id;
     private String name;
     private String age;

@@ -24,12 +24,7 @@ public @interface MTNotEmpty {
 	String message() default "{cn.mytype.validator.constraints.MTNotEmpty.message}";
 
 
-	String arg0() default "";
-	String arg1() default "";
-	String arg2() default "";
-	String arg3() default "";
-	String arg4() default "";
-
+	String name() default "";
 
 	Class<?>[] groups() default { };
 
