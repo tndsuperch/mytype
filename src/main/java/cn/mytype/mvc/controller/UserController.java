@@ -2,6 +2,8 @@ package cn.mytype.mvc.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -37,9 +39,10 @@ public class UserController {
     }
 
     @RequestMapping(value="/register")
-    public ModelAndView register(User user, BindingResult bindingResult) {
+    public ModelAndView register(@Valid User user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.toString());
             return new ModelAndView("forward:/user/registerInit", "user", user);
         }
         userRegisterService.execute(user);
