@@ -6,36 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
 
-    <title>user register</title>
+    <title th:text="#{label.title.user.register}">user register</title>
 </head>
 <body>
 
 <div>
     <form th:action="@{/user/register}" method="POST">
     <fieldset>
-    <legend>user register</legend>
+    <legend th:text="#{label.title.user.register}">user register</legend>
     <table>
         <tbody>
         <tr>
-            <td>ID</td>
+            <td th:text="#{label.field.user.id}">ID</td>
             <td><input name="id" type="text" th:value="${user} ? ${user.id} : ''" /></td>
         </tr>
         <tr>
-            <td>NAME</td>
+            <td th:text="#{label.field.user.id}">NAME</td>
             <td><input name="name" type="text" th:value="${user} ? ${user.name} : ''" /></td>
         </tr>
         <tr>
-            <td>AGE</td>
+            <td th:text="#{label.field.user.id}">AGE</td>
             <td><input name="age" type="text" th:value="${user} ? ${user.age} : ''" /></td>
         </tr>
         <tr>
-            <td>BIRTH</td>
+            <td th:text="#{label.field.user.id}">BIRTH</td>
             <td><input name="id" type="text" th:value="${user} ? ${user.birth} : ''" /></td>
         </tr>
         </tbody>
     </table>
     </fieldset>
-    <input type="submit" value="Submit" />
+    <input type="submit" th:value="#{label.button.insert}" value="Submit" />
     </form>
 </div>
 </body>

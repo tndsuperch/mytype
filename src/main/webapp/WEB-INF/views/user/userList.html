@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
 
-    <title>user list</title>
+    <title th:text="#{label.title.user.list}">user list</title>
 </head>
 <body>
 
@@ -14,10 +14,10 @@
    <table>
        <thead>
        <tr>
-           <th>ID</th>
-           <th>NAME</th>
-           <th>AGE</th>
-           <th>BIRTH</th>
+           <th th:text="#{label.field.user.id}">ID</th>
+           <th th:text="#{label.field.user.name}">NAME</th>
+           <th th:text="#{label.field.user.age}">AGE</th>
+           <th th:text="#{label.field.user.birth}">BIRTH</th>
        </tr>
        </thead>
        <tbody>
