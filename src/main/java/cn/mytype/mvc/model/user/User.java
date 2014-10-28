@@ -1,14 +1,20 @@
 package cn.mytype.mvc.model.user;
 
+import cn.mytype.validator.constraints.MTLength;
 import cn.mytype.validator.constraints.MTNotEmpty;
+import cn.mytype.validator.constraints.MTRange;
 
 
 public class User {
 
     @MTNotEmpty(name="用户ID")
+    @MTLength(name="用户ID", min=1, max=10)
     private String id;
+    @MTNotEmpty(name="用户姓名")
     private String name;
+    @MTRange(name="年龄", min=18, max=150)
     private String age;
+    @MTNotEmpty(name="生日")
     private String birth;
 
     public String getId() {

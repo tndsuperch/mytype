@@ -11,26 +11,41 @@
 <body>
 
 <div>
-    <form th:action="@{/user/register}" method="POST">
+    <!-- <div th:errors="${user.*}"></div> -->
+
+    <form th:object="${user}" th:action="@{/user/register}" method="POST">
+    
+    <ul th:if="${#fields.hasErrors('*')}">
+      <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+    </ul>
+    
+    <ul th:if="${#fields.hasErrors('global')}">
+      <li th:each="err : ${#fields.errors('global')}" th:text="${err}">Input is incorrect</li>
+    </ul>
+    
+    <ul th:if="${#fields}">
+      <li th:each="field : ${#fields.*}" th:text="${field}"></li>
+    </ul>
+    
     <fieldset>
     <legend th:text="#{label.title.user.register}">user register</legend>
     <table>
         <tbody>
         <tr>
             <td th:text="#{label.field.user.id}">ID</td>
-            <td><input name="id" type="text" th:value="${user} ? ${user.id} : ''" /></td>
+            <td><input name="id" type="text" th:field="*{id}" /></td>
         </tr>
         <tr>
             <td th:text="#{label.field.user.name}">NAME</td>
-            <td><input name="name" type="text" th:value="${user} ? ${user.name} : ''" /></td>
+            <td><input name="name" type="text" th:field="*{name}" /></td>
         </tr>
         <tr>
             <td th:text="#{label.field.user.age}">AGE</td>
-            <td><input name="age" type="text" th:value="${user} ? ${user.age} : ''" /></td>
+            <td><input name="age" type="text" th:field="*{age}" /></td>
         </tr>
         <tr>
             <td th:text="#{label.field.user.birth}">BIRTH</td>
-            <td><input name="birth" type="text" th:value="${user} ? ${user.birth} : ''" /></td>
+            <td><input name="birth" type="text" th:field="*{birth}" /></td>
         </tr>
         </tbody>
     </table>

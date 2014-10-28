@@ -6,9 +6,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import cn.mytype.mvc.model.user.SearchCommand;
 import cn.mytype.mvc.model.user.User;
@@ -27,26 +27,27 @@ public class UserController {
     private UserRegisterService userRegisterService;
 
     @RequestMapping(value="/list")
-    public ModelAndView listUsers() {
+    public String listUsers(Model model) {
         SearchCommand searchCommand = new SearchCommand(SearchCommand.SELECT_ALL);
         List<User> users = userSearchService.execute(searchCommand);
-        return new ModelAndView("/user/userList", "users", users);
+        model.addAttribute("users", users);
+        return "/user/userList";
     }
 
     @RequestMapping(value="/registerInit")
-    public String registerInit() {
+    public String registerInit(User user) {
         return "/user/userRegister";
     }
 
     @RequestMapping(value="/register")
-    public ModelAndView register(@Valid User user, BindingResult bindingResult) {
+    public String register(@Valid User user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.toString());
-            return new ModelAndView("forward:/user/registerInit", "user", user);
+            return "/user/userRegister";
         }
 
         userRegisterService.execute(user);
-        return new ModelAndView("forward:/user/list");
+        return "forward:/user/list";
     }
 }
