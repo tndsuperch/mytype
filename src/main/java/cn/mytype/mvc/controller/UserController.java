@@ -45,6 +45,7 @@ public class UserController {
             System.out.println(bindingResult.toString());
             return new ModelAndView("forward:/user/registerInit", "user", user);
         }
+
         userRegisterService.execute(user);
         return new ModelAndView("forward:/user/list");
     }

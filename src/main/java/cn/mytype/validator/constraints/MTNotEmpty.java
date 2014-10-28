@@ -13,16 +13,19 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
+import javax.validation.ReportAsSingleViolation;
 
-import cn.mytype.validator.MTNotEmptyValidator;
+import org.hibernate.validator.constraints.NotEmpty;
+
 
 @Documented
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
-@Constraint(validatedBy = { MTNotEmptyValidator.class })
+@ReportAsSingleViolation
+@Constraint(validatedBy = { })
+@NotEmpty
 public @interface MTNotEmpty {
 	String message() default "{cn.mytype.validator.constraints.MTNotEmpty.message}";
-
 
 	String name() default "";
 

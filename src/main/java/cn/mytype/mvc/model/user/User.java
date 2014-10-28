@@ -2,9 +2,10 @@ package cn.mytype.mvc.model.user;
 
 import cn.mytype.validator.constraints.MTNotEmpty;
 
+
 public class User {
 
-    @MTNotEmpty(name="ID")
+    @MTNotEmpty(name="用户ID")
     private String id;
     private String name;
     private String age;
