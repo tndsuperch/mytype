@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.mytype.PathConfig;
 import cn.mytype.mvc.model.user.SearchCommand;
 import cn.mytype.mvc.model.user.User;
 import cn.mytype.mvc.service.user.UserRegisterService;
@@ -17,8 +18,7 @@ import cn.mytype.mvc.service.user.UserSearchService;
 
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+public class UserController extends MyTypeController {
 
     @Autowired
     private UserSearchService userSearchService;
@@ -26,28 +26,29 @@ public class UserController {
     @Autowired
     private UserRegisterService userRegisterService;
 
-    @RequestMapping(value="/list")
+    @RequestMapping(value=PathConfig.TO_USER_LIST)
     public String listUsers(Model model) {
         SearchCommand searchCommand = new SearchCommand(SearchCommand.SELECT_ALL);
         List<User> users = userSearchService.execute(searchCommand);
         model.addAttribute("users", users);
-        return "/user/userList";
+        return PathConfig.TO_USER_LIST_VIEW;
     }
 
-    @RequestMapping(value="/registerInit")
+    @RequestMapping(value=PathConfig.TO_USER_REGISTER_INIT)
     public String registerInit(User user) {
-        return "/user/userRegister";
+        return PathConfig.TO_USER_REGISTER_VIEW;
     }
 
-    @RequestMapping(value="/register")
+    @RequestMapping(value=PathConfig.TO_USER_REGISTER)
     public String register(@Valid User user, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.toString());
-            return "/user/userRegister";
+            // 注意：此处不能用forward,否则错误消息带不到画面上
+            return PathConfig.TO_USER_REGISTER_VIEW;
         }
 
         userRegisterService.execute(user);
-        return "forward:/user/list";
+        return PathConfig.FORWARD_USER_LIST;
     }
 }
