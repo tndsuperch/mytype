@@ -3,10 +3,10 @@ package cn.mytype;
 
 /**
  * 常量定义规则：
- * RequestMapping的入口PATH：    TO_XXXX
- * HTML VIEW的PATH：    TO_XXXX_VIEW
- * Forward的时候：    FORWARD_XXXX
- * Redirect的时候：    REDIRECT_XXXX
+ * RequestMapping的入口PATH:    TO_XXXX
+ * HTML VIEW的PATH:    TO_XXXX_VIEW
+ * Forward的时候:    FORWARD_XXXX
+ * Redirect的时候:    REDIRECT_XXXX
  * @author tndsuperch
  *
  */
