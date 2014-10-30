@@ -16,11 +16,11 @@ public final class PathConfig {
         super();
     }
 
-    public static final String TO_ERROR                 = "/error";
+    public static final String TO_ERROR_VIEW            = "error";
     public static final String TO_USER_LIST             = "/user/list";
-    public static final String TO_USER_LIST_VIEW        = "/user/userList";
+    public static final String TO_USER_LIST_VIEW        = "user/userList";
     public static final String TO_USER_REGISTER_INIT    = "/user/registerInit";
-    public static final String TO_USER_REGISTER_VIEW    = "/user/userRegister";
+    public static final String TO_USER_REGISTER_VIEW    = "user/userRegister";
     public static final String TO_USER_REGISTER         = "/user/register";
     public static final String FORWARD_USER_LIST        = "forward:/user/list";
 
