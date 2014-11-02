@@ -18,18 +18,25 @@ public class MyTypeException extends RuntimeException {
     private String message;
     private String messageId;
 
-    MyTypeException(Throwable throwable) {
+    public MyTypeException() {
+        super();
+    }
+
+    public MyTypeException(Throwable throwable) {
+        super();
         this.exception = throwable;
         log.error(throwable);
     }
 
-    MyTypeException(String message, Throwable throwable) {
+    public MyTypeException(String message, Throwable throwable) {
+        super();
         this.message = message;
         this.exception = throwable;
         log.error(message, throwable);
     }
 
-    MyTypeException(String messageId, Object[] args, Throwable throwable) {
+    public MyTypeException(String messageId, Object[] args, Throwable throwable) {
+        super();
         // TODO
         this.message = "";
         this.exception = throwable;
