@@ -2,6 +2,8 @@ package cn.mytype;
 
 
 /**
+ * 控制器用路径配置常量类
+ *
  * 常量定义规则：
  * RequestMapping的入口PATH:    TO_XXXX
  * HTML VIEW的PATH:    TO_XXXX_VIEW
