@@ -19,7 +19,10 @@
     <context:component-scan base-package="cn.mytype"></context:component-scan>
 
     <!-- 对静态资源文件的访问 -->
-    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources  mapping="/js/**" location="/WEB-INF/resources/js/"/>
+    <mvc:resources  mapping="/css/**" location="/WEB-INF/resources/css/"/>
+    <mvc:resources  mapping="/images/**" location="/WEB-INF/resources/images/"/>
+    <mvc:resources  mapping="/fonts/**" location="/WEB-INF/resources/fonts/"/>
     <!--
     <mvc:default-servlet-handler/>
     -->
