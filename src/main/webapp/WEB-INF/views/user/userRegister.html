@@ -11,7 +11,12 @@
         <script type="text/javascript" src="../../resources/js/jquery.dropotron.min.js" th:src="@{/js/jquery.dropotron.min.js}"></script>
         <script type="text/javascript" src="../../resources/js/skel.min.js" th:src="@{/js/skel.min.js}"></script>
         <script type="text/javascript" src="../../resources/js/skel-layers.min.js" th:src="@{/js/skel-layers.min.js}"></script>
+        <script type="text/javascript" src="../../resources/js/jquery.uploadify.min.js" th:src="@{/js/jquery.uploadify.min.js}"></script>
+        
         <script type="text/javascript" src="../../resources/js/init.js" th:src="@{/js/init.js}"></script>
+        
+        <link rel="stylesheet" href="../../resources/css/uploadify.css" th:href="@{/css/uploadify.css}"/>
+        
         <noscript>
             <link rel="stylesheet" href="../../resources/css/skel.css" th:href="@{/css/skel.css}"/>
             <link rel="stylesheet" href="../../resources/css/style.css" th:href="@{/css/style.css}"/>
@@ -186,7 +191,7 @@
 <div>
     <!-- <div th:errors="${user.*}"></div> -->
 
-    <form th:object="${user}" th:action="@{/user/register}" method="POST">
+    <form th:object="${user}" th:action="@{/user/register}" enctype="multipart/form-data" method="POST">
 
     <ul th:if="${#fields.hasErrors('*')}">
       <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
@@ -225,6 +230,13 @@
         </div>
         <div class="row half">
             <div class="12u">
+                <span>FILE</span>
+                <input id="file_upload" name="file" type="file" th:field="*{file}" multiple="true" /><div th:if="${#fields.hasErrors('file')}" th:errors="*{file}">Incorrect input</div>
+                <a href="javascript:$('#file_upload').uploadify('upload', '*')">上传文件</a> | <a href="javascript:$('#file_upload').uploadify('stop')">停止上传!</a>  
+            </div>
+        </div>
+        <div class="row half">
+            <div class="12u">
                 <ul class="actions">
                     <li>
                         <input type="submit" th:value="#{label.button.insert}" value="Submit" class="button alt" />
@@ -234,6 +246,26 @@
         </div>
     </fieldset>
     </form>
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+        $(function() {
+            $('#file_upload').uploadify({
+                'buttonText'    : '请选择',  
+                'swf'           : /*[[@{/images/uploadify.swf}]]*/'../../resources/images/uploadify.swf',
+                'cancelImg'     : /*[[@{/images/uploadify-cancel.png}]]*/'',
+                'uploader'      : /*[[@{/user/register}]]*/'',
+                'fileSizeLimit' : '0',  
+                'fileTypeExts'  : '*.gif; *.jpeg; *.jpg; *.png', 
+                'auto'          : false,
+                'multi'         : true,
+                'fileObjName'   : 'file', 
+                'onUploadSuccess' : function(file, data, response) {  
+                    alert( file.name + ' 上传成功！ ');  
+                }  
+            });
+        });
+    /*]]>*/
+    </script>
 </div>
 <div th:include="footer :: copy"></div>
     </body>

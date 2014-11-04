@@ -1,5 +1,7 @@
 package cn.mytype.mvc.model.user;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import cn.mytype.validator.constraints.MTLength;
 import cn.mytype.validator.constraints.MTNotEmpty;
 import cn.mytype.validator.constraints.MTRange;
@@ -17,6 +19,14 @@ public class User {
     @MTNotEmpty(name="生日")
     private String birth;
 
+    private MultipartFile file;
+
+    public MultipartFile getFile() {
+        return file;
+    }
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
     public String getId() {
         return id;
     }

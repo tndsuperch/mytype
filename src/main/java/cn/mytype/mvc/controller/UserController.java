@@ -42,6 +42,8 @@ public class UserController extends MyTypeController {
     @RequestMapping(value=PathConfig.TO_USER_REGISTER)
     public String register(@Valid User user, BindingResult bindingResult) {
 
+        System.out.println(user.getFile().getOriginalFilename());
+
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.toString());
             // 注意：此处不能用forward,否则错误消息带不到画面上
@@ -51,4 +53,5 @@ public class UserController extends MyTypeController {
         userRegisterService.execute(user);
         return PathConfig.FORWARD_USER_LIST;
     }
+
 }
