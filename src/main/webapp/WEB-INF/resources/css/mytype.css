@@ -1,3 +1,4 @@
-.stress div:hover {
-    background: red;
+li>div:hover {
+    background: rgba(240,13,35,0.4);
+    border: 5px solid #f00d23;
 }
