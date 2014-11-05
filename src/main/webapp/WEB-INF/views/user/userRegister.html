@@ -6,24 +6,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="description" content=""/>
         <!--[if lte IE 8]><script src="../../resources/css/ie/html5shiv.js"></script><![endif]-->
-    
+
         <script type="text/javascript" src="../../resources/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
         <script type="text/javascript" src="../../resources/js/jquery.dropotron.min.js" th:src="@{/js/jquery.dropotron.min.js}"></script>
         <script type="text/javascript" src="../../resources/js/skel.min.js" th:src="@{/js/skel.min.js}"></script>
         <script type="text/javascript" src="../../resources/js/skel-layers.min.js" th:src="@{/js/skel-layers.min.js}"></script>
         <script type="text/javascript" src="../../resources/js/jquery.uploadify.min.js" th:src="@{/js/jquery.uploadify.min.js}"></script>
-        
+        <script type="text/javascript" src="../../resources/js/jquery.flexslider-min.js" th:src="@{/js/jquery.flexslider-min.js}"></script>
+
         <script type="text/javascript" src="../../resources/js/init.js" th:src="@{/js/init.js}"></script>
-        
+
         <link rel="stylesheet" href="../../resources/css/uploadify.css" th:href="@{/css/uploadify.css}"/>
-        
+        <link rel="stylesheet" href="../../resources/css/flexslider.css" th:href="@{/css/flexslider.css}" media="screen"/>
+
         <noscript>
             <link rel="stylesheet" href="../../resources/css/skel.css" th:href="@{/css/skel.css}"/>
             <link rel="stylesheet" href="../../resources/css/style.css" th:href="@{/css/style.css}"/>
             <link rel="stylesheet" href="../../resources/css/style-wide.css" th:href="@{/css/style-wide.css}"/>
         </noscript>
         <!--[if lte IE 8]><link rel="stylesheet" href="../../resources/css/ie/v8.css" /><![endif]-->
-        
+
         <title th:text="#{label.title.user.register}">user register</title>
     </head>
     <body>
@@ -91,14 +93,79 @@
                                         <a href="#" class="button">Read More</a> </div>
                                 </section>
                             </div>
+                            <div class="row no-collapse-1">
+                                <section class="slider 12u">
+                                    <div class="flexslider carousel">
+                                        <ul class="slides">
+                                            <li>
+                                                <div class="box">
+                                                <a href="#" class="image featured"><img th:src="@{/images/pic01.jpg}" alt=""/></a>
+                                                <div class="box"><p>Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum  wisi maecenas ligula.</p>
+                                                <a href="#" class="button">Read More</a> </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="box">
+                                                <a href="#" class="image featured"><img th:src="@{/images/pic02.jpg}" alt=""/></a>
+                                                <div class="box"><p>Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum  wisi maecenas ligula.</p>
+                                                <a href="#" class="button">Read More</a> </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="box">
+                                                <a href="#" class="image featured"><img th:src="@{/images/pic03.jpg}" alt=""/></a>
+                                                <div class="box"><p>Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum  wisi maecenas ligula.</p>
+                                                <a href="#" class="button">Read More</a> </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="box">
+                                                <a href="#" class="image featured"><img th:src="@{/images/pic01.jpg}" alt=""/></a>
+                                                <div class="box"><p>Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum  wisi maecenas ligula.</p>
+                                                <a href="#" class="button">Read More</a> </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="box">
+                                                <a href="#" class="image featured"><img th:src="@{/images/pic02.jpg}" alt=""/></a>
+                                                <div class="box"><p>Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum  wisi maecenas ligula.</p>
+                                                <a href="#" class="button">Read More</a> </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="box">
+                                                <a href="#" class="image featured"><img th:src="@{/images/pic03.jpg}" alt=""/></a>
+                                                <div class="box"><p>Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue rutrum  wisi maecenas ligula.</p>
+                                                <a href="#" class="button">Read More</a> </div>
+                                                </div>
+                                            </li>
+                                      </ul>
+                                    </div>
+                                </section>
+                                <script type="text/javascript">
+                                      $('.flexslider').flexslider({
+                                        animation: "slide",
+                                        animationLoop: true,
+                                        slideshow: true,
+                                        directionNav: true,
+                                        controlNav: true,
+                                        keyboardNav: true,
+                                        mousewheel: true,
+                                        itemWidth: 320,
+                                        itemMargin: 15,
+                                        prevText: "Previous",
+                                        nextText: "Next"
+                                      });
+                                </script>
+                            </div>
                         </div>
                     </div>
 
                 <!-- Main -->
                     <div id="main">
                         <div class="container">
-                            <div class="row"> 
-                                
+                            <div class="row">
+
                                 <!-- Content -->
                                 <div class="6u">
                                     <section>
@@ -191,7 +258,7 @@
 <div>
     <!-- <div th:errors="${user.*}"></div> -->
 
-    <form th:object="${user}" th:action="@{/user/register}" enctype="multipart/form-data" method="POST">
+    <form th:object="${user}" th:action="@{/user/register}" enctype="multipart/form-data" method="post">
 
     <ul th:if="${#fields.hasErrors('*')}">
       <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
@@ -203,7 +270,7 @@
 
     <fieldset>
     <legend th:text="#{label.title.user.register}">user register</legend>
-    
+
         <div class="row half">
             <div class="12u">
                 <span th:text="#{label.field.user.id}">ID</span>
@@ -231,8 +298,11 @@
         <div class="row half">
             <div class="12u">
                 <span>FILE</span>
-                <input id="file_upload" name="file" type="file" th:field="*{file}" multiple="true" /><div th:if="${#fields.hasErrors('file')}" th:errors="*{file}">Incorrect input</div>
-                <a href="javascript:$('#file_upload').uploadify('upload', '*')">上传文件</a> | <a href="javascript:$('#file_upload').uploadify('stop')">停止上传!</a>  
+                <input id="file_upload" name="file" type="file" th:field="*{file}" multiple="multiple" /><div th:if="${#fields.hasErrors('file')}" th:errors="*{file}">Incorrect input</div>
+                <ul class="actions">
+                    <li><a href="javascript:$('#file_upload').uploadify('upload', '*')" class="button medium">上传文件</a></li>
+                    <li><a href="javascript:$('#file_upload').uploadify('stop')" class="button medium">停止上传</a></li>
+                </ul>
             </div>
         </div>
         <div class="row half">
@@ -250,18 +320,18 @@
     /*<![CDATA[*/
         $(function() {
             $('#file_upload').uploadify({
-                'buttonText'    : '请选择',  
+                'buttonText'    : '请选择',
                 'swf'           : /*[[@{/images/uploadify.swf}]]*/'../../resources/images/uploadify.swf',
                 'cancelImg'     : /*[[@{/images/uploadify-cancel.png}]]*/'',
                 'uploader'      : /*[[@{/user/register}]]*/'',
-                'fileSizeLimit' : '0',  
-                'fileTypeExts'  : '*.gif; *.jpeg; *.jpg; *.png', 
+                'fileSizeLimit' : '0',
+                'fileTypeExts'  : '*.gif; *.jpeg; *.jpg; *.png',
                 'auto'          : false,
                 'multi'         : true,
-                'fileObjName'   : 'file', 
-                'onUploadSuccess' : function(file, data, response) {  
-                    alert( file.name + ' 上传成功！ ');  
-                }  
+                'fileObjName'   : 'file',
+                'onUploadSuccess' : function(file, data, response) {
+                    alert( file.name + ' 上传成功！ ');
+                }
             });
         });
     /*]]>*/

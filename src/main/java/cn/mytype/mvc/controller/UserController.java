@@ -1,5 +1,6 @@
 package cn.mytype.mvc.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -41,6 +42,14 @@ public class UserController extends MyTypeController {
 
     @RequestMapping(value=PathConfig.TO_USER_REGISTER)
     public String register(@Valid User user, BindingResult bindingResult) {
+
+
+        try {
+            System.out.println(new String(user.getName().getBytes("ISO-8859-1"),"UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         System.out.println(user.getFile().getOriginalFilename());
 
