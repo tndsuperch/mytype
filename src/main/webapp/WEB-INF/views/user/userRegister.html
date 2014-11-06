@@ -13,11 +13,14 @@
         <script type="text/javascript" src="../../resources/js/skel-layers.min.js" th:src="@{/js/skel-layers.min.js}"></script>
         <script type="text/javascript" src="../../resources/js/jquery.uploadify.min.js" th:src="@{/js/jquery.uploadify.min.js}"></script>
         <script type="text/javascript" src="../../resources/js/jquery.flexslider-min.js" th:src="@{/js/jquery.flexslider-min.js}"></script>
-
+        <script type="text/javascript" src="../../resources/js/jquery.validationEngine-zh_CN.js" th:src="@{/js/jquery.validationEngine-zh_CN.js}"></script>
+        <script type="text/javascript" src="../../resources/js/jquery.validationEngine.js" th:src="@{/js/jquery.validationEngine.js}"></script>
+        <script type="text/javascript" src="../../resources/js/jquery.passstrength.min.js" th:src="@{/js/jquery.passstrength.min.js}"></script>
         <script type="text/javascript" src="../../resources/js/init.js" th:src="@{/js/init.js}"></script>
 
         <link rel="stylesheet" href="../../resources/css/uploadify.css" th:href="@{/css/uploadify.css}"/>
         <link rel="stylesheet" href="../../resources/css/flexslider.css" th:href="@{/css/flexslider.css}" media="screen"/>
+        <link rel="stylesheet" href="../../resources/css/validationEngine.jquery.css"  th:href="@{/css/validationEngine.jquery.css}"/>
         <link rel="stylesheet" href="../../resources/css/mytype.css" th:href="@{/css/mytype.css}"/>
 
         <noscript>
@@ -259,7 +262,7 @@
 <div>
     <!-- <div th:errors="${user.*}"></div> -->
 
-    <form th:object="${user}" th:action="@{/user/register}" enctype="multipart/form-data" method="post">
+    <form id="registerForm" th:object="${user}" th:action="@{/user/register}" enctype="multipart/form-data" method="post">
 
     <ul th:if="${#fields.hasErrors('*')}">
       <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
@@ -275,7 +278,7 @@
         <div class="row half">
             <div class="12u">
                 <span th:text="#{label.field.user.id}">ID</span>
-                <input name="id" type="text" th:field="*{id}" /><div th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Incorrect input</div>
+                <input name="id" type="text" class="validate[required,custom[onlyLetterNumber]]" th:field="*{id}" /><div th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Incorrect input</div>
             </div>
         </div>
         <div class="row half">
@@ -293,7 +296,7 @@
         <div class="row half">
             <div class="12u">
                 <span th:text="#{label.field.user.birth}">BIRTH</span>
-                <input name="id" type="text" th:field="*{birth}" /><div th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}">Incorrect input</div>
+                <input name="id" type="text" class="validate[required,custom[date]]" th:field="*{birth}" /><div th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}">Incorrect input</div>
             </div>
         </div>
         <div class="row half">
@@ -320,8 +323,8 @@
     <script th:inline="javascript">
     /*<![CDATA[*/
         $(function() {
+            // 文件上传控件设定
             $('#file_upload').uploadify({
-                'buttonText'    : '请选择',
                 'swf'           : /*[[@{/images/uploadify.swf}]]*/'../../resources/images/uploadify.swf',
                 'cancelImg'     : /*[[@{/images/uploadify-cancel.png}]]*/'',
                 'uploader'      : /*[[@{/user/register}]]*/'',
@@ -334,6 +337,11 @@
                     alert( file.name + ' 上传成功！ ');
                 }
             });
+             // 表单验证控件设定
+            $("#registerForm").validationEngine();
+
+            $('#id').passStrengthify();
+
         });
     /*]]>*/
     </script>
