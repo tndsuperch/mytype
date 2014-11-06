@@ -2,6 +2,7 @@ package cn.mytype.utils;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 
@@ -43,6 +44,34 @@ public class ImageUtil {
             log.error("图片大小变换失败！", e);
             return false;
         }
+    }
+
+    /***
+     * 功能 :调整图片大小
+     * @param srcImgPath 原图片路径
+     * @param width   转换后图片宽度
+     * @param height  转换后图片高度
+     * @return ByteArrayOutputStream 变换后的图片输出流
+     */
+    public static ByteArrayOutputStream resizeImage(String srcImgPath,
+            int width, int height) {
+
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        try {
+            File srcFile = new File(srcImgPath);
+            Image srcImg = ImageIO.read(srcFile);
+
+            BufferedImage buffImg = null;
+            buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            buffImg.getGraphics().drawImage(
+                    srcImg.getScaledInstance(width, height, Image.SCALE_SMOOTH), 0,
+                    0, null);
+
+            ImageIO.write(buffImg, JPEG, os);
+        } catch (Exception e) {
+            log.error("图片大小变换失败！", e);
+        }
+        return os;
     }
 
     public static int getImageWidth(String imgPath) throws Exception {
