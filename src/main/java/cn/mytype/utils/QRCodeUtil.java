@@ -33,6 +33,9 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
+/**
+ * 二维码生成和解析用工具类
+ */
 public class QRCodeUtil {
 
     private static Log log = LogFactory.getLog(QRCodeUtil.class);
@@ -229,8 +232,8 @@ public class QRCodeUtil {
     }
 
     public static void main(String[] args) {
-        String imgPath = "C:/Users/xyuser/Desktop/myQrCode.png";
-        QRCodeUtil.encode("[美食家]http://www.mytype.com", "C:/Users/xyuser/Desktop/2014-09-27 133336.jpg", imgPath);
+        String imgPath = "D:/myQrCode.png";
+        QRCodeUtil.encode("http://172.30.125.10:8080/HomeFood/homefood01.html", "D:/page1_img1.jpg", imgPath);
         System.out.println(QRCodeUtil.decode(imgPath));
     }
 
