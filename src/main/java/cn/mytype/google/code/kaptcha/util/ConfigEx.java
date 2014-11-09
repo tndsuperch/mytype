@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.Properties;
 import java.util.Random;
 
-import org.springframework.util.StringUtils;
+import cn.mytype.utils.StringUtil;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.util.Config;
@@ -30,7 +30,7 @@ public class ConfigEx extends Config {
     {
         String paramName = Constants.KAPTCHA_TEXTPRODUCER_FONT_COLOR;
         String paramValue = getProperties().getProperty(paramName);
-        String[] colors = StringUtils.tokenizeToStringArray(paramValue, DELIMITERS);
+        String[] colors = StringUtil.tokenizeToStringArray(paramValue, DELIMITERS);
         Random random =new Random();
         String color = colors[random.nextInt(colors.length)];
         return this.helper.getColor(paramName, color, Color.BLACK);
@@ -42,7 +42,7 @@ public class ConfigEx extends Config {
     {
         String paramName = Constants.KAPTCHA_NOISE_COLOR;
         String paramValue = getProperties().getProperty(paramName);
-        String[] colors = StringUtils.tokenizeToStringArray(paramValue, DELIMITERS);
+        String[] colors = StringUtil.tokenizeToStringArray(paramValue, DELIMITERS);
         Random random =new Random();
         String color = colors[random.nextInt(colors.length)];
         return this.helper.getColor(paramName, color, Color.BLACK);
