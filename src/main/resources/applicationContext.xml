@@ -25,6 +25,8 @@
     <!-- Log4j配置文件定义 -->
 	<context:property-placeholder ignore-resource-not-found="true" location="classpath*:log4j.properties"/>
 
+    <!-- 注解注入支持-->
+    <context:annotation-config />
 
     <!-- 自动扫描的包名 -->
     <context:component-scan base-package="cn.mytype"></context:component-scan>
@@ -51,4 +53,27 @@
     
     <!-- 注解式事务管理定义-->
     <tx:annotation-driven/>
+    
+    <!-- 验证码生成器 -->
+    <bean id="kaptchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+        <property name="config">
+            <bean class="cn.mytype.google.code.kaptcha.util.ConfigEx">
+                <constructor-arg>
+                    <props>
+                        <prop key="kaptcha.border">no</prop>
+                        <prop key="kaptcha.border.color">105,179,90</prop>
+                        <prop key="kaptcha.textproducer.font.color">red|pink|gray|blue|yellow|green|orange</prop>
+                        <prop key="kaptcha.noise.color">red|pink|gray|blue|yellow|green|orange</prop>
+                        <prop key="kaptcha.image.width">160</prop>
+                        <prop key="kaptcha.textproducer.font.size">30</prop>
+                        <prop key="kaptcha.image.height">40</prop>
+                        <prop key="kaptcha.session.key">KAPTCHA_SESSION_KEY</prop>
+                        <prop key="kaptcha.textproducer.char.length">4</prop>
+                        <prop key="kaptcha.textproducer.font.names">宋体,楷体,微软雅黑</prop>
+                    </props>
+                </constructor-arg>
+            </bean>
+        </property>
+    </bean>
+
 </beans>

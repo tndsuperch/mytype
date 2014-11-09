@@ -2,7 +2,7 @@ package cn.mytype.dao.user;
 
 import java.util.List;
 
-import cn.mytype.mvc.model.user.User;
+import cn.mytype.domain.User;
 
 public interface UserDao {
 

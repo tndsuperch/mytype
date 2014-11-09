@@ -1,21 +1,25 @@
 package cn.mytype.mvc.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.mytype.Constants;
 import cn.mytype.PathConfig;
-import cn.mytype.mvc.model.user.SearchCommand;
-import cn.mytype.mvc.model.user.User;
+import cn.mytype.config.MessagesConfig;
+import cn.mytype.domain.User;
+import cn.mytype.mvc.model.UserForm;
+import cn.mytype.mvc.model.UserSearchCommand;
 import cn.mytype.mvc.service.user.UserRegisterService;
 import cn.mytype.mvc.service.user.UserSearchService;
+import cn.mytype.utils.BeanUtil;
 
 
 @Controller
@@ -28,30 +32,26 @@ public class UserController extends MyTypeController {
     private UserRegisterService userRegisterService;
 
     @RequestMapping(value=PathConfig.TO_USER_LIST)
-    public String listUsers(Model model) {
-        SearchCommand searchCommand = new SearchCommand(SearchCommand.SELECT_ALL);
+    public String listUsers(@ModelAttribute("userForm") UserForm userForm) {
+        UserSearchCommand searchCommand = new UserSearchCommand(UserSearchCommand.SELECT_ALL);
         List<User> users = userSearchService.execute(searchCommand);
-        model.addAttribute("users", users);
+        userForm.setUsers(users);
         return PathConfig.TO_USER_LIST_VIEW;
     }
 
     @RequestMapping(value=PathConfig.TO_USER_REGISTER_INIT)
-    public String registerInit(User user) {
+    public String registerInit(UserForm userForm) {
         return PathConfig.TO_USER_REGISTER_VIEW;
     }
 
     @RequestMapping(value=PathConfig.TO_USER_REGISTER)
-    public String register(@Valid User user, BindingResult bindingResult) {
+    public String register(@ModelAttribute("userForm") @Valid UserForm userForm, BindingResult bindingResult, HttpServletRequest request) {
 
+        String kaptchaText = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
 
-        try {
-            System.out.println(new String(user.getName().getBytes("ISO-8859-1"),"UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        if (!userForm.getKaptcha().equals(kaptchaText)) {
+            bindingResult.rejectValue("kaptcha", MessagesConfig.MsgErrKaptchaDifferent.getKey());
         }
-
-        System.out.println(user.getFile().getOriginalFilename());
 
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.toString());
@@ -59,6 +59,8 @@ public class UserController extends MyTypeController {
             return PathConfig.TO_USER_REGISTER_VIEW;
         }
 
+        User user = new User();
+        BeanUtil.copyProperties(userForm, user);
         userRegisterService.execute(user);
         return PathConfig.FORWARD_USER_LIST;
     }

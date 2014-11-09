@@ -1,6 +1,8 @@
-package cn.mytype.mvc.model.user;
+package cn.mytype.mvc.model;
 
-public class SearchCommand {
+import cn.mytype.domain.User;
+
+public class UserSearchCommand {
     public static int SELECT_ONE = 0;
     public static int SELECT_ALL = 1;
 
@@ -15,11 +17,11 @@ public class SearchCommand {
         this.user = user;
     }
 
-    public SearchCommand() {
+    public UserSearchCommand() {
         super();
     }
 
-    public SearchCommand(int command) {
+    public UserSearchCommand(int command) {
         super();
         this.command = command;
     }

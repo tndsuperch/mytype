@@ -17,6 +17,9 @@
 
     <!-- 自动扫描的包名 -->
     <context:component-scan base-package="cn.mytype"></context:component-scan>
+    
+    <!-- 注解注入支持-->
+    <context:annotation-config />
 
     <!-- 对静态资源文件的访问 -->
     <mvc:resources  mapping="/js/**" location="/WEB-INF/resources/js/"/>

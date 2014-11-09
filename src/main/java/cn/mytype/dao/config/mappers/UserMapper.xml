@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
 <!--  新增记录  -->
-    <insert id="insertUser" parameterType="cn.mytype.mvc.model.user.User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertUser" parameterType="cn.mytype.domain.User" useGeneratedKeys="true" keyProperty="id">
         insert into 
             userlist
             (name
@@ -18,7 +18,7 @@
             )
     </insert>
 <!--  查询单条记录  -->
-    <select id="getUserById" parameterType="string" resultType="cn.mytype.mvc.model.user.User">
+    <select id="getUserById" parameterType="string" resultType="cn.mytype.domain.User">
         select 
             * 
         from 
@@ -27,7 +27,7 @@
             id = #{id}
     </select>
 <!--  修改记录  -->
-    <update id="updateUser" parameterType="cn.mytype.mvc.model.user.User">
+    <update id="updateUser" parameterType="cn.mytype.domain.User">
         update 
             userlist 
         set 
@@ -38,14 +38,14 @@
             id = #{id}
     </update>
 <!--  查询所有记录  -->
-    <select id="getUserListAll" resultType="cn.mytype.mvc.model.user.User">
+    <select id="getUserListAll" resultType="cn.mytype.domain.User">
         select 
             * 
         from 
             userlist
     </select>
 <!--  删除记录  -->
-    <delete id="deleteUser" parameterType="cn.mytype.mvc.model.user.User">
+    <delete id="deleteUser" parameterType="cn.mytype.domain.User">
         delete from 
             t_blog 
         where 

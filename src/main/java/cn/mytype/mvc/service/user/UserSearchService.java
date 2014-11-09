@@ -9,23 +9,23 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.mytype.MyTypeException;
 import cn.mytype.dao.user.UserDao;
-import cn.mytype.mvc.model.user.SearchCommand;
-import cn.mytype.mvc.model.user.User;
+import cn.mytype.domain.User;
+import cn.mytype.mvc.model.UserSearchCommand;
 import cn.mytype.mvc.service.AbstractService;
 
 @Service
 @Transactional
-public class UserSearchService extends AbstractService<SearchCommand, List<User>> {
+public class UserSearchService extends AbstractService<UserSearchCommand, List<User>> {
 
     @Autowired
     private UserDao userDao;
 
     @Override
-    protected List<User> doExecute(SearchCommand searchCommand) {
+    protected List<User> doExecute(UserSearchCommand searchCommand) {
         List<User> userList = new ArrayList<User>();
-        if (searchCommand.getCommand() == SearchCommand.SELECT_ALL) {
+        if (searchCommand.getCommand() == UserSearchCommand.SELECT_ALL) {
             userList = userDao.getUserListAll();
-        } else if (searchCommand.getCommand() == SearchCommand.SELECT_ONE) {
+        } else if (searchCommand.getCommand() == UserSearchCommand.SELECT_ONE) {
             User user = searchCommand.getUser();
             userList.add(userDao.getUserById(user.getId()));
         } else {

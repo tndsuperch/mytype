@@ -5,20 +5,30 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 
 public enum MessagesConfig {
 
-    LabelFieldUserId("label.field.user.id");
+    LabelFieldUserId("label.field.user.id"),
+    MsgErrKaptchaDifferent("msg.err.kaptcha.different");
 
 
-    private final String value;
+    private String key;
 
     @Autowired
     ReloadableResourceBundleMessageSource messageSource;
 
-    MessagesConfig(final String key) {
-        value = messageSource.getMessage(key, null, null);
+    MessagesConfig(String key) {
+        this.key = key;
     }
 
-    public String getValue() {
-        return this.value;
+    public String getKey() {
+        return this.key;
+    }
+
+    public String getValue(String... args) {
+        return messageSource.getMessage(this.key, args, null);
+    }
+
+    @Override
+    public String toString() {
+        return this.key;
     }
 
 }
