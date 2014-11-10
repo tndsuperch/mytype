@@ -1,6 +1,5 @@
-package cn.mytype.mvc.model;
+package cn.mytype.domain;
 
-import cn.mytype.domain.User;
 
 public class UserSearchCommand {
     public static int SELECT_ONE = 0;

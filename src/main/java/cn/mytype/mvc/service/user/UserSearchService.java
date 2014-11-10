@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.mytype.MyTypeException;
 import cn.mytype.dao.user.UserDao;
 import cn.mytype.domain.User;
-import cn.mytype.mvc.model.UserSearchCommand;
+import cn.mytype.domain.UserSearchCommand;
 import cn.mytype.mvc.service.AbstractService;
 
 @Service
